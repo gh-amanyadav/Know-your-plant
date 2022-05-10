@@ -7,7 +7,6 @@ import 'package:tflite/tflite.dart';
 
 class UI extends StatefulWidget {
   const UI({Key? key}) : super(key: key);
-
   @override
   _UIState createState() => _UIState();
 }
@@ -80,6 +79,7 @@ class _UIState extends State<UI> {
     classifyImage(File(_image!.path));
   }
 
+  var speciesName="";
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIOverlays([]);
@@ -92,19 +92,15 @@ class _UIState extends State<UI> {
             width: MediaQuery.of(context).size.width,
             child: Column(
               children: [
-                Expanded(
-                  child: Column(
-                    children: const [
+                const Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child:
                       Text(
                         "Plant Species Detection",
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
-                      // Text(
-                      //   'We',
-                      //   textAlign: TextAlign.center,
-                      // )
-                    ],
                   ),
                 ),
                 Expanded(
@@ -154,7 +150,7 @@ class _UIState extends State<UI> {
                                   borderRadius: BorderRadius.circular(15)),
                               padding: const EdgeInsets.all(20),
                               child: Text(
-                                _outputs?[0]["label"] ?? "",
+                                speciesName=_outputs?[0]["label"] ?? "",
                                 style: const TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
