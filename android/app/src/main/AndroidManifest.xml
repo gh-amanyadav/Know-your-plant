@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.plant_species_detection">
    <application
-        android:label="plant_species_detection"
+        android:label="Know Your Plant"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
