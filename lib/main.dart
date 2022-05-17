@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'first_page.dart';
+import 'package:plant_species_detection/first_page.dart';
+import 'second_page.dart';
+import 'ui.dart';
 
 void main() {
   runApp(const MyApp());
