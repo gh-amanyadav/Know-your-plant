@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class BulletList extends StatelessWidget {
-  final List<String> strings;
+  final List<dynamic> strings;
 
   BulletList(this.strings);
 

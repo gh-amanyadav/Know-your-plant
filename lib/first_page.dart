@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'second_page.dart';
-import 'package:location/location.dart';
+
+
 
 class FirstPage extends StatefulWidget {
   const FirstPage({Key? key}) : super(key: key);
@@ -31,7 +32,7 @@ class _FirstPageState extends State<FirstPage> {
                           ),
                         ),
                       ),
-                      Padding(
+                      const Padding(
                         padding: EdgeInsets.only(left: 145),
                         child: Icon(Icons.location_on),
                       ),
@@ -95,7 +96,7 @@ class _FirstPageState extends State<FirstPage> {
                 ),
                 Card(
                   color: Colors.greenAccent,
-                  shape: RoundedRectangleBorder(
+                  shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(15.0),
                       topLeft: Radius.circular(15.0),

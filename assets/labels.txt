@@ -1,12 +1,6 @@
-0 Alstonia Scholaris 
-1 Arjun
-2 Bael
-3 Basil
-4 Chinar
-5 Gauva
-6 Jamun
-7 Jatropha
-8 Lemon
-9 Mango
-10 Pomegranate
-11 Pongamia Pinnata
+Curry
+Guava
+Jamun
+lemon
+Neem
+Tulsi

@@ -4,23 +4,21 @@ import 'package:plant_species_detection/BulletList.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tflite/tflite.dart';
 import 'dart:io';
+import 'details_species.dart';
 
 class SecondPage extends StatefulWidget {
-  final  int choice;
+  final int choice;
   const SecondPage({Key? key, required this.choice}) : super(key: key);
   @override
   State<SecondPage> createState() => _SecondPageState(choice: choice);
 }
 
 class _SecondPageState extends State<SecondPage> {
-
   int choice;
   _SecondPageState({required this.choice});
-
-  List? _outputs;
   XFile? _image;
   bool _loading = false;
-
+  List? _outputs;
   final ImagePicker _picker = ImagePicker();
   @override
   void initState() {
@@ -74,13 +72,30 @@ class _SecondPageState extends State<SecondPage> {
   }
 
   Future getImageGallery() async {
-    var image = await _picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
+    var image =
+        await _picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
     if (image == null) return null;
     setState(() {
       _loading = true;
       _image = image;
     });
     classifyImage(File(_image!.path));
+  }
+
+  String shortdetails() {
+    String sn;
+    sn = (_outputs?[0]["label"] ?? "") as String;
+    DetailSpecies d1 = DetailSpecies(specieName: sn);
+    String shortDetails = d1.shortDetails();
+    return shortDetails;
+  }
+
+  List longDetails() {
+    String sn;
+    sn = (_outputs?[0]["label"] ?? "") as String;
+    DetailSpecies d1 = DetailSpecies(specieName: sn);
+    List longDetails = d1.longDetails();
+    return longDetails;
   }
 
   @override
@@ -112,10 +127,10 @@ class _SecondPageState extends State<SecondPage> {
                 padding: const EdgeInsets.only(top: 30, right: 20),
                 child: Image.asset('assets/images/neem-leaf.png'),
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.only(top: 25, left: 45, right: 42),
                 child: Text(
-                  "The leaf you have scanned is belongs to Neem Species, which is mainly found in Uttarakhand, India.",
+                  shortdetails(),
                   style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.normal,
@@ -140,12 +155,9 @@ class _SecondPageState extends State<SecondPage> {
               Column(
                 children: [
                   Padding(
-                      padding: EdgeInsets.only(left: 25, top: 10),
-                      child: BulletList([
-                        "Wound healer: Make a paste out of the neem leaves and dab it on your wounds or insect bites a few times a day till it heals.",
-                        "Eye Trouble: Boil some neem leaves, let the water cool completely and then use it to wash your eyes. This will help any kind of irritation, tiredness or redness.",
-                        "Boost immunity: Crush some neem leaves and take them with a glass of water to increase your immunity."
-                      ])),
+                    padding: EdgeInsets.only(left: 25, top: 10),
+                    child: BulletList(longDetails()),
+                  )
                 ],
               )
             ],
