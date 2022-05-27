@@ -52,6 +52,7 @@ class _SecondPageState extends State<SecondPage> {
       _loading = false;
       _outputs = output;
     });
+    iad = (_outputs?[0]["label"] ?? "") as String;
   }
 
   @override
@@ -98,6 +99,7 @@ class _SecondPageState extends State<SecondPage> {
     return longDetails;
   }
 
+  String iad = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -120,48 +122,56 @@ class _SecondPageState extends State<SecondPage> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 30, right: 20),
-                child: Image.asset('assets/images/neem-leaf.png'),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 25, left: 45, right: 42),
-                child: Text(
-                  shortdetails(),
-                  style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.normal,
-                      textBaseline: TextBaseline.alphabetic,
-                      color: Color(0xFF4A4E4D)),
-                  textAlign: TextAlign.left,
-                ),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 30),
-                child: Text(
-                  "Remedial usage:",
-                  style: const TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      decoration: TextDecoration.underline),
-                ),
-              ),
-              Column(
-                children: [
+          child: _outputs == null
+              ? Column(children: [
                   Padding(
-                    padding: EdgeInsets.only(left: 25, top: 10),
-                    child: BulletList(longDetails()),
-                  )
-                ],
-              )
-            ],
-          ),
+                      padding: EdgeInsets.only(left: 125, top: 250),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(25),
+                          child: Image.asset('assets/images/Logo.png')))
+                ])
+              : Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 30, right: 20),
+                      child: Image.asset('assets/images/$iad-leaf.png'),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 25, left: 45, right: 42),
+                      child: Text(
+                        shortdetails(),
+                        style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.normal,
+                            textBaseline: TextBaseline.alphabetic,
+                            color: Color(0xFF4A4E4D)),
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 30),
+                      child: Text(
+                        "Remedial usage:",
+                        style: const TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.underline),
+                      ),
+                    ),
+                    Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(left: 25, top: 10),
+                          child: BulletList(longDetails()),
+                        )
+                      ],
+                    )
+                  ],
+                ),
         ),
       ),
     );

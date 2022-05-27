@@ -30,7 +30,7 @@ class DetailSpecies{
       return jamun;
     }else if(specieName == "Lemon"){
       return lemon;
-    }else if(specieName == "Neem"){
+    }else if(specieName == "Nm"){
       return neem;
     }else if(specieName == "Tulsi"){
       return tulsi;
