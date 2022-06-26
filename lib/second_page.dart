@@ -7,15 +7,18 @@ import 'dart:io';
 import 'details_species.dart';
 
 class SecondPage extends StatefulWidget {
+  final String locationDetail;
   final int choice;
-  const SecondPage({Key? key, required this.choice}) : super(key: key);
+  const SecondPage({Key? key, required this.choice, required this.locationDetail}) : super(key: key);
   @override
-  State<SecondPage> createState() => _SecondPageState(choice: choice);
+  State<SecondPage> createState() => _SecondPageState(choice: choice, locationDetail: locationDetail);
 }
 
 class _SecondPageState extends State<SecondPage> {
+
+  String locationDetail;
   int choice;
-  _SecondPageState({required this.choice});
+  _SecondPageState({required this.choice, required this.locationDetail});
   XFile? _image;
   bool _loading = false;
   List? _outputs;
@@ -83,11 +86,11 @@ class _SecondPageState extends State<SecondPage> {
     classifyImage(File(_image!.path));
   }
 
-  String shortdetails() {
+  String shortDetails() {
     String sn;
     sn = (_outputs?[0]["label"] ?? "") as String;
     DetailSpecies d1 = DetailSpecies(specieName: sn);
-    String shortDetails = d1.shortDetails();
+    String shortDetails = d1.shortDetails(locationDetail);
     return shortDetails;
   }
 
@@ -105,13 +108,13 @@ class _SecondPageState extends State<SecondPage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            icon: Icon(Icons.arrow_back_sharp),
+            icon: const Icon(Icons.arrow_back_sharp),
             tooltip: "Back Button",
             onPressed: () {
               Navigator.pop(context);
             },
             color: Colors.black),
-        title: Text(
+        title: const Text(
           "Know Your Plant",
           style: TextStyle(
               fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
@@ -125,10 +128,12 @@ class _SecondPageState extends State<SecondPage> {
           child: _outputs == null
               ? Column(children: [
                   Padding(
-                      padding: EdgeInsets.only(left: 125, top: 250),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(25),
-                          child: Image.asset('assets/images/Logo.png')))
+                    padding: EdgeInsets.only(left: 125, top: 250),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(25),
+                      child: Image.asset('assets/images/Logo.png'),
+                    ),
+                  ),
                 ])
               : Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -138,10 +143,11 @@ class _SecondPageState extends State<SecondPage> {
                       child: Image.asset('assets/images/$iad-leaf.png'),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 25, left: 45, right: 42),
+                      padding:
+                          const EdgeInsets.only(top: 25, left: 45, right: 42),
                       child: Text(
-                        shortdetails(),
-                        style: TextStyle(
+                        shortDetails(),
+                        style: const TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.normal,
                             textBaseline: TextBaseline.alphabetic,
@@ -152,11 +158,11 @@ class _SecondPageState extends State<SecondPage> {
                     const SizedBox(
                       height: 15,
                     ),
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.only(left: 30),
                       child: Text(
                         "Remedial usage:",
-                        style: const TextStyle(
+                        style: TextStyle(
                             fontSize: 28,
                             fontWeight: FontWeight.bold,
                             decoration: TextDecoration.underline),
@@ -165,7 +171,7 @@ class _SecondPageState extends State<SecondPage> {
                     Column(
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(left: 25, top: 10),
+                          padding: const EdgeInsets.only(left: 25, top: 10),
                           child: BulletList(longDetails()),
                         )
                       ],

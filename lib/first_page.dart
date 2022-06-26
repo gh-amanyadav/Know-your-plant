@@ -64,14 +64,14 @@ class _FirstPageState extends State<FirstPage> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(left: 145),
-            child: IconButton(icon: Icon(Icons.location_on), onPressed: () {getlocation();},)
+            padding: const EdgeInsets.only(left: 145),
+            child: IconButton(icon: const Icon(Icons.location_on), onPressed: () {getlocation();},)
           ),
           Padding(
             padding: const EdgeInsets.only(right: 30.0),
             child: Text(
               _currentAddress,
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                   color: Colors.black),
@@ -90,7 +90,7 @@ class _FirstPageState extends State<FirstPage> {
             ),
           ),
           Text(
-            "Narinder Kaur",
+            "Hiker",
             style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -160,7 +160,7 @@ class _FirstPageState extends State<FirstPage> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => SecondPage(
-                                    choice: 0,
+                                    choice: 0, locationDetail: _currentAddress,
                                   )));
                     },
                   ),
@@ -181,7 +181,7 @@ class _FirstPageState extends State<FirstPage> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => SecondPage(
-                                    choice: 1,
+                                    choice: 1, locationDetail: _currentAddress,
                                   )));
                     },
                   ),
@@ -190,7 +190,7 @@ class _FirstPageState extends State<FirstPage> {
             ),
           ),
         ),
-      ])),
+      ],),),
     );
   }
 }

@@ -18,8 +18,8 @@ class DetailSpecies{
   static const List tulsi = ["Diabetes: Tulsi may help to support a diet that is focused on reducing blood sugar", "Digestive Tract: Tulsi is used as a remedy for a range of gastrointestinal diseases as well as to improve appetite.", "Tulsi can help cure fever.",
   "Tulsi is used to treat insect bites.",
   "Tulsi leaves are used to treat skin problems like acne, blackheads and premature ageing.",];
-  String shortDetails(){
-    String detailsShort = "The leaf you have scanned is belongs to $specieName Species, which is mainly found in Uttarakhand, India.";
+  String shortDetails(String locationDetail){
+    String detailsShort = "The leaf you have scanned is belongs to $specieName Species, which is mainly found in $locationDetail, India.";
     return detailsShort;
   }
 
@@ -30,7 +30,7 @@ class DetailSpecies{
       return jamun;
     }else if(specieName == "Lemon"){
       return lemon;
-    }else if(specieName == "Nm"){
+    }else if(specieName == "Neem"){
       return neem;
     }else if(specieName == "Tulsi"){
       return tulsi;
