@@ -11,7 +11,6 @@ class FirstPage extends StatefulWidget {
 }
 
 class _FirstPageState extends State<FirstPage> {
-
   late Position _currentPosition;
   String _currentAddress = "";
 
@@ -31,9 +30,7 @@ class _FirstPageState extends State<FirstPage> {
   _getAddressFromLatLng() async {
     try {
       List<Placemark> placemarks = await placemarkFromCoordinates(
-          _currentPosition.latitude,
-          _currentPosition.longitude
-      );
+          _currentPosition.latitude, _currentPosition.longitude);
 
       Placemark place = placemarks[0];
 
@@ -42,155 +39,165 @@ class _FirstPageState extends State<FirstPage> {
       });
     } catch (e) {
       print(e);
-    }}
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Padding(
-            padding: const EdgeInsets.all(25),
-            child: IconButton(
-              onPressed: () {},
-              tooltip: 'Menu Icon will work soon!',
-              icon: const Icon(
-                Icons.menu_rounded,
-                size: 35,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 145),
-            child: IconButton(icon: const Icon(Icons.location_on), onPressed: () {getlocation();},)
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 30.0),
-            child: Text(
-              _currentAddress,
-              style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black),
-            ),
-          ),
-        ]),
-        Row(children: const <Widget>[
-          Padding(
-            padding: EdgeInsets.only(left: 45),
-            child: Text(
-              "Hey, ",
-              style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF000000)), //0xFF69F0AE
-            ),
-          ),
-          Text(
-            "Hiker",
-            style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF000000)), //0xFF35A8EA
-          ),
-        ]),
-        const Padding(
-          padding: EdgeInsets.only(left: 45, top: 20),
-          child: Text(
-            "Welcome to\nKnow Your Plant",
-            style: TextStyle(
-              fontSize: 40,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF4CAF50),
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 30),
-          child: Image.asset('assets/images/plant_image1.png'),
-        ),
-        const Expanded(
-          child: Padding(
-            padding: EdgeInsets.only(top: 25, left: 45, right: 42),
-            child: Text(
-              "Click or Upload your image to know about it",
-              style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF4A4E4D)),
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ),
-        Card(
-          color: Colors.greenAccent,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              topRight: Radius.circular(15.0),
-              topLeft: Radius.circular(15.0),
-            ),
-          ),
-          child: Container(
-            width: double.infinity,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(15.0),
-                topLeft: Radius.circular(15.0),
-              ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  margin: const EdgeInsets.all(10),
-                  decoration: const BoxDecoration(
-                    color: Color(0xFF65708F),
-                    shape: BoxShape.circle,
-                  ),
-                  child: IconButton(
-                    icon: const Icon(
-                      Icons.camera_alt,
-                      color: Colors.white,
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SecondPage(
-                                    choice: 0, locationDetail: _currentAddress,
-                                  )));
-                    },
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              Padding(
+                padding: const EdgeInsets.all(25),
+                child: IconButton(
+                  onPressed: () {},
+                  tooltip: 'Menu Icon will work soon!',
+                  icon: const Icon(
+                    Icons.menu_rounded,
+                    size: 35,
                   ),
                 ),
-                Container(
-                  margin: const EdgeInsets.all(10),
-                  decoration: const BoxDecoration(
-                    color: Color(0xFF65708F),
-                    shape: BoxShape.circle,
-                  ),
+              ),
+              Padding(
+                  padding: const EdgeInsets.only(left: 145),
                   child: IconButton(
-                    icon: const Icon(
-                      Icons.image,
-                      color: Colors.white,
-                    ),
+                    icon: const Icon(Icons.location_on),
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SecondPage(
-                                    choice: 1, locationDetail: _currentAddress,
-                                  )));
+                      getlocation();
                     },
-                  ),
-                )
-              ],
+                  )),
+              Padding(
+                padding: const EdgeInsets.only(right: 30.0),
+                child: Text(
+                  _currentAddress,
+                  style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black),
+                ),
+              ),
+            ]),
+            const Row(children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(left: 45),
+                child: Text(
+                  "Hey, ",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF000000)), //0xFF69F0AE
+                ),
+              ),
+              Text(
+                "Hiker",
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF000000)), //0xFF35A8EA
+              ),
+            ]),
+            const Padding(
+              padding: EdgeInsets.only(left: 45, top: 20),
+              child: Text(
+                "Welcome to\nKnow Your Plant",
+                style: TextStyle(
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF4CAF50),
+                ),
+              ),
             ),
-          ),
+            Padding(
+              padding: const EdgeInsets.only(top: 30),
+              child: Image.asset('assets/images/plant_image1.png'),
+            ),
+            const Expanded(
+              child: Padding(
+                padding: EdgeInsets.only(top: 25, left: 45, right: 42),
+                child: Text(
+                  "Click or Upload your image to know about it",
+                  style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF4A4E4D)),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+            Card(
+              color: Colors.greenAccent,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(15.0),
+                  topLeft: Radius.circular(15.0),
+                ),
+              ),
+              child: Container(
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(15.0),
+                    topLeft: Radius.circular(15.0),
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.all(10),
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF65708F),
+                        shape: BoxShape.circle,
+                      ),
+                      child: IconButton(
+                        icon: const Icon(
+                          Icons.camera_alt,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SecondPage(
+                                        choice: 0,
+                                        locationDetail: _currentAddress,
+                                      )));
+                        },
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.all(10),
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF65708F),
+                        shape: BoxShape.circle,
+                      ),
+                      child: IconButton(
+                        icon: const Icon(
+                          Icons.image,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SecondPage(
+                                        choice: 1,
+                                        locationDetail: _currentAddress,
+                                      )));
+                        },
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
-      ],),),
+      ),
     );
   }
 }
